@@ -21,6 +21,12 @@ spec:
           image: postgres
           ports:
             - containerPort: 5432
+          env:
+            - name: POSTGRES_PASSWORD
+              valueForm:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: PGPASSWORD
           volumeMounts:
           #name should match spec/volumes/name
             - name: postgres-storage
