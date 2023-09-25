@@ -11,18 +11,18 @@ spec:
     metadata:
       labels:
         component: postgres
-      spec:
-        volumes:
-          - name: postgress-storage
-            persistentVolumeClaim:
-              claimName: database-pvc
-        containers:
-          - name: postgres
-            image: postgres
-            ports:
-              - containerPort: 5432
-            volumeMounts:
-            #name should match spec/volumes/name
-              - name: postgres-storage
-                mountPath: /var/lib/postgresql/data
-                subPath: postgres
+    spec:
+      volumes:
+        - name: postgress-storage
+          persistentVolumeClaim:
+            claimName: database-pvc
+      containers:
+        - name: postgres
+          image: postgres
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+          #name should match spec/volumes/name
+            - name: postgres-storage
+              mountPath: /var/lib/postgresql/data
+              subPath: postgres
